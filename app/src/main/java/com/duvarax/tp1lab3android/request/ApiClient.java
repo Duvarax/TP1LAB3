@@ -2,54 +2,72 @@ package com.duvarax.tp1lab3android.request;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.duvarax.tp1lab3android.model.Usuario;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class ApiClient {
     private static SharedPreferences sp;
 
-    private static SharedPreferences conectar(Context context){
-        if(sp == null){
-            sp = context.getSharedPreferences("datos.xml", 0);
+    public static void registrarUsuario(Context context,Usuario usuario){
+        File userDat = new File(context.getFilesDir(), "usuario.dat");
+        try {
+            FileOutputStream fo = new FileOutputStream(userDat);
+            BufferedOutputStream bo = new BufferedOutputStream(fo);
+            ObjectOutputStream data = new ObjectOutputStream(bo);
+            data.writeObject(usuario);
+            bo.flush();
+            data.close();
+
+        } catch (FileNotFoundException e) {
+            Log.d("salida", e.toString());
+        } catch (IOException e) {
+            Log.d("salida", e.toString());
         }
-        return sp;
+
     }
 
-    public static void guardar(Context context, Usuario usuario){
-        SharedPreferences sp = conectar(context);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putLong("dni", usuario.getDni());
-        editor.putString("nombre", usuario.getNombre());
-        editor.putString("apellido", usuario.getApellido());
-        editor.putString("correo", usuario.getCorreo());
-        editor.putString("contraseña", usuario.getContraseña());
-        editor.commit();
-    }
+    public static Usuario leerUsuario(Context context){
+        File userDat = new File(context.getFilesDir(), "usuario.dat");
+        try {
+            FileInputStream fo = new FileInputStream(userDat);
+            BufferedInputStream bo = new BufferedInputStream(fo);
+            ObjectInputStream data = new ObjectInputStream(bo);
+            Usuario user = (Usuario)data.readObject();
+            return user;
 
-    public static Usuario leer(Context context){
-        SharedPreferences sp = conectar(context);
-        Long dni = sp.getLong("dni", -1);
-        String nombre = sp.getString("nombre", "nn");
-        String apellido = sp.getString("apellido", "nn");
-        String correo = sp.getString("correo", "nn");
-        String contraseña = sp.getString("contraseña", "nn");
-
-        Usuario usuario = new Usuario(nombre,dni, apellido, correo, contraseña);
-        return usuario;
-    }
-    public static Usuario login(Context context, String email, String pass){
-        Usuario usuario = null;
-        SharedPreferences sp = conectar(context);
-        Long dni = sp.getLong("dni", -1);
-        String nombre = sp.getString("nombre", "nn");
-        String apellido = sp.getString("apellido", "nn");
-        String correo = sp.getString("correo", "nn");
-        String contraseña = sp.getString("contraseña", "nn");
-
-        if(correo.equals(email) && contraseña.equals(pass)){
-            usuario = new Usuario(nombre,dni, apellido, correo, contraseña);
+        } catch (FileNotFoundException e) {
+            Log.d("salida", e.toString());
+        } catch (IOException e) {
+            Log.d("salida", e.toString());
+        } catch (ClassNotFoundException e) {
+            Log.d("salida", e.toString());
         }
-        return usuario;
+        return null;
+    }
+
+    public static Usuario logearUsuario(Context context, String email, String pass){
+        Usuario user = leerUsuario(context);
+        if(user == null){
+            return null;
+        }
+        if(user.getCorreo().equals(email) && user.getContraseña().equals(pass)){
+            return user;
+        }else{
+            user = null;
+            return user;
+        }
     }
 
 

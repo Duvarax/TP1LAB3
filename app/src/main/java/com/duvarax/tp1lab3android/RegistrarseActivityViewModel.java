@@ -33,8 +33,8 @@ public class RegistrarseActivityViewModel extends AndroidViewModel {
     }
 
     public void leer(){
-        Usuario user = ApiClient.leer(context);
-        if(user.getDni() == -1){
+        Usuario user = ApiClient.leerUsuario(context);
+        if(user == null){
             usuarioNuevo.setValue(true);
         }else{
             usuarioMutable.setValue(user);

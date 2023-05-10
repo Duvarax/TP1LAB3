@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
         binding.btnRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ApiClient.guardar(context, new Usuario("", -1l, "", "", ""));
+                Usuario user = null;
+                ApiClient.registrarUsuario(context, null);
                 Intent intent = new Intent(context, RegistrarseActivity.class);
                 startActivity(intent);
             }

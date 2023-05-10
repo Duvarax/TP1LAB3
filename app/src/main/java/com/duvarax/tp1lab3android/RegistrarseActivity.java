@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.duvarax.tp1lab3android.databinding.ActivityMainBinding;
 import com.duvarax.tp1lab3android.databinding.ActivityRegistrarseBinding;
@@ -56,7 +57,9 @@ public class RegistrarseActivity extends AppCompatActivity {
                 String contraseña = binding.etPass.getText().toString();
 
                 Usuario usuario = new Usuario(nombre,dni, apellido, correo, contraseña);
-                ApiClient.guardar(context, usuario);
+                ApiClient.registrarUsuario(context,usuario);
+                Toast.makeText(context, "Usuario Creado", Toast.LENGTH_SHORT).show();
+
             }
         });
         mv.leer();

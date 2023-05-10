@@ -30,7 +30,7 @@ public class MainActivityViewModel extends AndroidViewModel {
 
 
     public void logear(String correo, String contraseña){
-        Usuario usuario = ApiClient.login(context, correo, contraseña);
+        Usuario usuario = ApiClient.logearUsuario(context, correo, contraseña);
         if(usuario != null){
             usuarioMutable.setValue(usuario);
         }else{
