@@ -2,6 +2,7 @@ package com.duvarax.tp1lab3android;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -15,9 +16,18 @@ public class RegistrarseActivityViewModel extends AndroidViewModel {
     private Context context;
     private MutableLiveData<Usuario> usuarioMutable;
     private MutableLiveData<Boolean> usuarioNuevo;
+
+    private MutableLiveData<Bitmap> imagen;
     public RegistrarseActivityViewModel(@NonNull Application application) {
         super(application);
         context = application.getApplicationContext();
+    }
+
+    public LiveData<Bitmap> getImagen(){
+        if(imagen == null){
+            imagen = new MutableLiveData<>();
+        }
+        return imagen;
     }
     public LiveData<Usuario> getUsuarioMutable(){
         if(usuarioMutable == null){
@@ -39,6 +49,11 @@ public class RegistrarseActivityViewModel extends AndroidViewModel {
         }else{
             usuarioMutable.setValue(user);
         }
+    }
+
+
+    public void setImagen(){
+
     }
 
 }

@@ -14,8 +14,8 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="106dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Dni"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,8 +28,8 @@
         android:layout_marginTop="38dp"
         android:layout_marginEnd="106dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Nombre"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etDni" />
@@ -42,8 +42,8 @@
         android:layout_marginTop="62dp"
         android:layout_marginEnd="101dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Apellido"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNombre" />
@@ -56,8 +56,8 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="98dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Correo"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etApellido" />
@@ -70,8 +70,8 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="103dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Contraseña"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,11 +81,31 @@
         android:id="@+id/btnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="151dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="48dp"
         android:text="Guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPass" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTomarFoto" />
+
+    <ImageView
+        android:id="@+id/ivFoto"
+        android:layout_width="115dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPass"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/btnTomarFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Tomar Foto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivFoto" />
 </androidx.constraintlayout.widget.ConstraintLayout>

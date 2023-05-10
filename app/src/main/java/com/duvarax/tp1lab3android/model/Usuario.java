@@ -1,5 +1,7 @@
 package com.duvarax.tp1lab3android.model;
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
@@ -11,6 +13,9 @@ public class Usuario implements Serializable {
     private String correo;
     private String contraseña;
 
+
+
+
     public Usuario() {
     }
 
@@ -21,6 +26,9 @@ public class Usuario implements Serializable {
         this.correo = correo;
         this.contraseña = contraseña;
     }
+
+
+
 
     public String getNombre() {
         return nombre;
